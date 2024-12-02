@@ -57,5 +57,9 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
+    // Library Project:
     implementation(project(":utillib"))
+
+    // Navigation Compose:
+    implementation(libs.androidx.navigation.compose)
 }

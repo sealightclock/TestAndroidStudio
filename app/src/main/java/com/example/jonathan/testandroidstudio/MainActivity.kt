@@ -4,15 +4,8 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import com.example.jonathan.testandroidstudio.ui.theme.TestAndroidStudioTheme
+import com.example.jonathan.testandroidstudio.view.AppNavigation
 import com.example.jonathan.utillib.ExternalInterfaceImpl
 import com.example.jonathan.utillib.InternalInterfaceImpl
 
@@ -24,15 +17,11 @@ class MainActivity : ComponentActivity() {
         Log.d(TAG, "onCreate")
 
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+
         setContent {
             TestAndroidStudioTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                // Navigation Compose with start screen:
+                AppNavigation()
             }
         }
 
@@ -53,21 +42,5 @@ class MainActivity : ComponentActivity() {
         // Another module, external interface -> class here:
         val externalInterfaceImpl2 = ExternalInterfaceImpl2()
         externalInterfaceImpl2.doSomething()
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    TestAndroidStudioTheme {
-        Greeting("Android")
     }
 }
