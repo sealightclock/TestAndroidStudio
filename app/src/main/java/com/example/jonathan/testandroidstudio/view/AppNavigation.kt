@@ -11,6 +11,6 @@ fun AppNavigation() {
 
     NavHost(navController = navController, startDestination = "welcome") {
         composable("welcome") { WelcomeScreen(navController) }
-        composable("next") { NextScreen() }
+        composable("next") { NextScreen(navController) }
     }
 }
