@@ -10,23 +10,23 @@ on:
 
 jobs:
   build:
-    name: Build and Test
+    name: Job one - Build and Test
     runs-on: ubuntu-latest
 
     steps:
     # Step 1: Checkout the code
-    - name: Checkout code
+    - name: Step one - Checkout the code
       uses: actions/checkout@v3
 
     # Step 2: Set up JDK
-    - name: Set up JDK 17
+    - name: Step two - Set up JDK
       uses: actions/setup-java@v3
       with:
         distribution: 'zulu'
         java-version: '17'
 
     # Step 3: Cache Gradle dependencies
-    - name: Cache Gradle dependencies
+    - name: Step three - Cache Gradle dependencies
       uses: actions/cache@v3
       with:
         path: |
@@ -37,37 +37,37 @@ jobs:
           ${{ runner.os }}-gradle
 
     # Step 4: Build the project
-    - name: Build with Gradle
+    - name: Step four - Build the project with Gradle
       run: ./gradlew build
 
     # Step 5: Run tests
-    - name: Run Unit Tests
+    - name: Step five - Run Unit Tests
       run: ./gradlew test
 
   deploy:
-    name: Deploy to Firebase
+    name: Job two - Deploy to Firebase
     needs: build
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'  # Only deploy on the main branch
 
     steps:
     # Step 1: Checkout the code
-    - name: Checkout code
+    - name: Step one - Checkout code
       uses: actions/checkout@v3
 
     # Step 2: Set up JDK
-    - name: Set up JDK 17 
+    - name: Step two - Set up JDK
       uses: actions/setup-java@v3
       with:
         distribution: 'zulu'
         java-version: '17'
 
     # Step 3: Upload to Firebase
-    - name: Deploy to Firebase App Distribution
-      uses: wzieba/Firebase-Distribution-Github-Action@v1
-      with:
-        appId: ${{ secrets.FIREBASE_APP_ID }}
-        token: ${{ secrets.FIREBASE_AUTH_TOKEN }}
-        groups: beta-testers
-        file: app/build/outputs/apk/release/app-release.apk
+    #- name: Step three - Deploy to Firebase App Distribution
+    #  uses: wzieba/Firebase-Distribution-Github-Action@v1
+    #  with:
+    #    appId: ${{ secrets.FIREBASE_APP_ID }}
+    #    token: ${{ secrets.FIREBASE_AUTH_TOKEN }}
+    #    groups: beta-testers
+    #    file: app/build/outputs/apk/release/app-release.apk
 
