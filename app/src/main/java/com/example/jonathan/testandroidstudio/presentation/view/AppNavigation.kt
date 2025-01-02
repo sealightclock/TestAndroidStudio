@@ -1,4 +1,4 @@
-package com.example.jonathan.testandroidstudio.view
+package com.example.jonathan.testandroidstudio.presentation.view
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost

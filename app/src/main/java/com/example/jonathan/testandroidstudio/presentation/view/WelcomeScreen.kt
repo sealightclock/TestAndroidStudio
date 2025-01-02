@@ -1,4 +1,4 @@
-package com.example.jonathan.testandroidstudio.view
+package com.example.jonathan.testandroidstudio.presentation.view
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -13,7 +13,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 
 @Composable
-fun NextScreen(navController: NavHostController) {
+fun WelcomeScreen(navController: NavHostController) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -22,14 +22,14 @@ fun NextScreen(navController: NavHostController) {
         horizontalAlignment = Alignment.CenterHorizontally)
     {
         Text(
-            text = "Welcome to TestAndroidStudio - NextScreen"
+            text = "Welcome to TestAndroidStudio - Welcome Screen"
         )
 
         Button(
-            onClick = { navController.navigate("welcome") })
+            onClick = { navController.navigate("next") })
         {
             Text(
-                text = "Go to welcome screen"
+                text = "Go to next screen"
             )
         }
     }
