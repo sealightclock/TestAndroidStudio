@@ -6,6 +6,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import com.example.jonathan.testandroidstudio.ui.theme.TestAndroidStudioTheme
 import com.example.jonathan.testandroidstudio.presentation.view.AppNavigation
+import com.example.jonathan.testandroidstudio.testcase.internalinterface.Dog
 import com.example.jonathan.utillib.ExternalInterfaceImpl
 import com.example.jonathan.utillib.InternalInterfaceImpl
 

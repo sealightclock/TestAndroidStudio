@@ -1,4 +1,4 @@
-package com.example.jonathan.testandroidstudio
+package com.example.jonathan.testandroidstudio.testcase.internalinterface
 
 import android.util.Log
 
