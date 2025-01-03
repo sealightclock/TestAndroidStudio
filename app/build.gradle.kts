@@ -2,15 +2,19 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+
+    // From kapt to ksp (better for Room database):
+    alias(libs.plugins.devtools.ksp)
 }
 
 android {
     namespace = "com.example.jonathan.testandroidstudio"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.jonathan.testandroidstudio"
         minSdk = 24
+        //noinspection OldTargetApi
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -62,4 +66,11 @@ dependencies {
 
     // Navigation Compose:
     implementation(libs.androidx.navigation.compose)
+
+    // Room database:
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+
+    // From kapt to ksp (better for Room database):
+    ksp(libs.room.compiler)
 }
