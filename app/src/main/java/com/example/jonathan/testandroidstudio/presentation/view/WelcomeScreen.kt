@@ -40,7 +40,7 @@ fun WelcomeScreen(navController: NavHostController, viewModel: WelcomeViewModel)
         )
         Spacer(modifier = Modifier.padding(16.dp))
         Button(
-            onClick = { viewModel.incrementCounter() })
+            onClick = { viewModel.incrementCounterByUi() })
         {
             Text(
                 text = "Increment counter"

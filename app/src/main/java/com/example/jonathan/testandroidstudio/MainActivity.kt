@@ -18,7 +18,6 @@ import com.example.jonathan.testandroidstudio.ui.theme.TestAndroidStudioTheme
 import com.example.jonathan.utillib.ExternalInterfaceImpl
 import com.example.jonathan.utillib.InternalInterfaceImpl
 
-
 private const val TAG = "TAS: MainActivity"
 
 class MainActivity : ComponentActivity() {
@@ -35,15 +34,18 @@ class MainActivity : ComponentActivity() {
         )
 
         val welcomeViewModel = ViewModelProvider(this, WelcomeViewModelFactory(localDbRepository))[WelcomeViewModel::class.java]
-        welcomeViewModel.getCounter() // Fetch value on app launch
+        welcomeViewModel.fetchCounterFromLocalSource() // Fetch value on app launch
 
         val nextViewModel = ViewModelProvider(this, NextViewModelFactory(localDbRepository))[NextViewModel::class.java]
-        nextViewModel.getNote() // Fetch value on app launch
+        nextViewModel.fetchNoteFromLocalSource() // Fetch value on app launch
 
         setContent {
             TestAndroidStudioTheme {
                 // Navigation Compose with start screen:
-                AppNavigation(welcomeViewModel, nextViewModel)
+                AppNavigation(
+                    welcomeViewModel,
+                    nextViewModel,
+                    )
             }
         }
 

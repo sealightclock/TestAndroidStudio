@@ -40,7 +40,7 @@ fun NextScreen(navController: NavHostController, nextViewModel: NextViewModel) {
         Spacer(modifier = Modifier.padding(16.dp))
         OutlinedTextField(
             value = noteState.value,
-            onValueChange = { nextViewModel.updateNote(it) },
+            onValueChange = { nextViewModel.updateNoteByUi(it) },
             modifier = Modifier.fillMaxWidth().padding(8.dp),
             singleLine = true
         )
