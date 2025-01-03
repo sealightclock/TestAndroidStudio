@@ -20,7 +20,7 @@ import com.example.jonathan.testandroidstudio.presentation.viewmodel.NextViewMod
 
 @Composable
 fun NextScreen(navController: NavHostController, nextViewModel: NextViewModel) {
-    var noteState = nextViewModel.note.collectAsState()
+    val noteState = nextViewModel.note.collectAsState()
 
     Column(
         modifier = Modifier
