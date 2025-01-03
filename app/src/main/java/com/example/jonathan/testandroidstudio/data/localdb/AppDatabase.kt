@@ -9,7 +9,11 @@ import com.example.jonathan.testandroidstudio.domain.datamodel.KeyStringValue
 
 // TODO: Changing this line will require a migration !!!
 //   To avoid the migration during testing, uninstall the app.
-@Database(entities = [KeyStringValue::class, KeyIntValue::class], version = 1)
+@Database(entities = [
+    KeyStringValue::class,
+    KeyIntValue::class,
+                     ],
+    version = 1)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun keyStringValueDao(): KeyStringValueDao
     abstract fun keyIntValueDao(): KeyIntValueDao

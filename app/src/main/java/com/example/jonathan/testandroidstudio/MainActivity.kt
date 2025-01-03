@@ -6,8 +6,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.lifecycle.ViewModelProvider
 import com.example.jonathan.testandroidstudio.data.localdb.AppDatabase
-import com.example.jonathan.testandroidstudio.data.repository.KeyIntValueRepository
-import com.example.jonathan.testandroidstudio.data.repository.KeyStringValueRepository
+import com.example.jonathan.testandroidstudio.data.repository.LocalDbRepository
 import com.example.jonathan.testandroidstudio.presentation.view.AppNavigation
 import com.example.jonathan.testandroidstudio.presentation.viewmodel.NextViewModel
 import com.example.jonathan.testandroidstudio.presentation.viewmodel.NextViewModelFactory
@@ -30,12 +29,15 @@ class MainActivity : ComponentActivity() {
 
         val database = AppDatabase.getDatabase(applicationContext)
 
-        val keyIntValueRepository = KeyIntValueRepository(database.keyIntValueDao())
-        val welcomeViewModel = ViewModelProvider(this, WelcomeViewModelFactory(keyIntValueRepository))[WelcomeViewModel::class.java]
+        val localDbRepository = LocalDbRepository(
+            database.keyStringValueDao(),
+            database.keyIntValueDao(),
+        )
+
+        val welcomeViewModel = ViewModelProvider(this, WelcomeViewModelFactory(localDbRepository))[WelcomeViewModel::class.java]
         welcomeViewModel.fetchKeyIntValue("counter") // Fetch value on app launch
 
-        val keyStringValueRepository = KeyStringValueRepository(database.keyStringValueDao())
-        val nextViewModel = ViewModelProvider(this, NextViewModelFactory(keyStringValueRepository))[NextViewModel::class.java]
+        val nextViewModel = ViewModelProvider(this, NextViewModelFactory(localDbRepository))[NextViewModel::class.java]
         nextViewModel.fetchKeyStringValue("note") // Fetch value on app launch
 
         setContent {
