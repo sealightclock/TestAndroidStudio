@@ -7,11 +7,11 @@ import androidx.navigation.compose.rememberNavController
 import com.example.jonathan.testandroidstudio.presentation.viewmodel.WelcomeViewModel
 
 @Composable
-fun AppNavigation() {
+fun AppNavigation(welcomeViewModel: WelcomeViewModel) {
     val navController = rememberNavController()
 
     NavHost(navController = navController, startDestination = "welcome") {
-        composable("welcome") { WelcomeScreen(navController, WelcomeViewModel()) }
+        composable("welcome") { WelcomeScreen(navController, welcomeViewModel) }
         composable("next") { NextScreen(navController) }
     }
 }

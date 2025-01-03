@@ -4,8 +4,10 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import com.example.jonathan.testandroidstudio.ui.theme.TestAndroidStudioTheme
 import com.example.jonathan.testandroidstudio.presentation.view.AppNavigation
+import com.example.jonathan.testandroidstudio.presentation.viewmodel.WelcomeViewModel
 import com.example.jonathan.testandroidstudio.testcase.internalinterface.Dog
 import com.example.jonathan.utillib.ExternalInterfaceImpl
 import com.example.jonathan.utillib.InternalInterfaceImpl
@@ -19,10 +21,13 @@ class MainActivity : ComponentActivity() {
 
         super.onCreate(savedInstanceState)
 
+        // This insures that the ViewModel is created only once, and rotation works:
+        val welcomeViewModel: WelcomeViewModel by viewModels()
+
         setContent {
             TestAndroidStudioTheme {
                 // Navigation Compose with start screen:
-                AppNavigation()
+                AppNavigation(welcomeViewModel)
             }
         }
 
