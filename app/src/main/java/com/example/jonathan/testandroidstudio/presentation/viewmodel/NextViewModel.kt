@@ -3,6 +3,8 @@ package com.example.jonathan.testandroidstudio.presentation.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.jonathan.testandroidstudio.data.repository.LocalDbRepository
+import com.example.jonathan.testandroidstudio.domain.usecase.GetNoteUseCase
+import com.example.jonathan.testandroidstudio.domain.usecase.SetNoteUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -11,26 +13,23 @@ class NextViewModel(private val repository: LocalDbRepository) : ViewModel() {
     private val _note: MutableStateFlow<String> = MutableStateFlow("Initial note")
     val note: StateFlow<String>
         get() = _note
+
     fun updateNote(newNote: String) {
         _note.value = newNote
 
-        insertKeyStringValue("note", newNote)
+        // Save the new note to the repository
+        setNote()
     }
 
-    fun fetchKeyStringValue(key: String) {
+    fun getNote() {
         viewModelScope.launch {
-            val value = repository.getStringValue(key)
-            if (value != null) {
-                _note.value = value
-            } else {
-                _note.value = "value not found for key: $key"
-            }
+            _note.value = GetNoteUseCase(repository).invoke()
         }
     }
 
-    private fun insertKeyStringValue(key: String, value: String) {
+    private fun setNote() {
         viewModelScope.launch {
-            repository.insertStringValue(key, value)
+            SetNoteUseCase(repository, _note.value).invoke()
         }
     }
 }

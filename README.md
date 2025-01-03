@@ -10,13 +10,13 @@ Baseline technologies:
 - build.gradle.kts
 
 Tests:
-[1] Navigate among Composable screens (similar to full-screen Fragments) using NavHost.
-[2] Create an Android Library module (project) "utillib" and use it module "app".
-[3] Test "internal interface" - not accessible by other modules.
-[4] Create file ".github/workflows/android-ci-cd.yml" (GitHub Actions) for CI/CD. Make sure: 
+- Navigate among Composable screens (similar to full-screen Fragments) using NavHost.
+- Create an Android Library module (project) "utillib" and use it module "app".
+- Test "internal interface" - not accessible by other modules.
+- Create file ".github/workflows/android-ci-cd.yml" (GitHub Actions) for CI/CD. Make sure: 
     chmod=+x ./gradlew
     Java 17+ in the .yml file.
-[5] Set up file structure based on the MVVM Clean architecture
+- Set up file structure based on the MVVM Clean architecture
     presentation
         view
         viewmodel
@@ -25,6 +25,7 @@ Tests:
         usecase
     data
         repository
+        localdb
         restful
         
      

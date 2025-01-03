@@ -35,10 +35,10 @@ class MainActivity : ComponentActivity() {
         )
 
         val welcomeViewModel = ViewModelProvider(this, WelcomeViewModelFactory(localDbRepository))[WelcomeViewModel::class.java]
-        welcomeViewModel.fetchKeyIntValue("counter") // Fetch value on app launch
+        welcomeViewModel.getCounter() // Fetch value on app launch
 
         val nextViewModel = ViewModelProvider(this, NextViewModelFactory(localDbRepository))[NextViewModel::class.java]
-        nextViewModel.fetchKeyStringValue("note") // Fetch value on app launch
+        nextViewModel.getNote() // Fetch value on app launch
 
         setContent {
             TestAndroidStudioTheme {
