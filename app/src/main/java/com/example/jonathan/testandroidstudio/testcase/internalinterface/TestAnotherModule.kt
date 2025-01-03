@@ -1,8 +1,7 @@
-package com.example.jonathan.testandroidstudio
+package com.example.jonathan.testandroidstudio.testcase.internalinterface
 
 import android.util.Log
 import com.example.jonathan.utillib.ExternalInterface
-import com.example.jonathan.utillib.InternalInterfaceImpl
 
 private const val TAG = "TAS: TestAnotherModule"
 

@@ -4,11 +4,15 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.jonathan.testandroidstudio.domain.datamodel.KeyIntValue
 import com.example.jonathan.testandroidstudio.domain.datamodel.KeyStringValue
 
-@Database(entities = [KeyStringValue::class], version = 1)
+// TODO: Changing this line will require a migration !!!
+//   To avoid the migration during testing, uninstall the app.
+@Database(entities = [KeyStringValue::class, KeyIntValue::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun keyStringValueDao(): KeyStringValueDao
+    abstract fun keyIntValueDao(): KeyIntValueDao
 
     companion object {
         @Volatile
