@@ -17,6 +17,6 @@ class RemoteServerRepository() {
     }
 
     companion object {
-        private const val FULL_URL_STR = "https://github.com/sealightclock/ResFileStore/blob/main/key_value_pairs.json"
+        private const val FULL_URL_STR = "https://raw.githubusercontent.com/sealightclock/ResFileStore/refs/heads/main/key_value_pairs.json"
     }
 }
