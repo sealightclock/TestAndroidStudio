@@ -1,8 +1,6 @@
 package com.example.jonathan.testandroidstudio.data.remoteserver
 
-import android.os.Build
 import android.util.Log
-import androidx.annotation.RequiresApi
 import com.example.jonathan.testandroidstudio.domain.datamodel.remoteserver.KeyValuePairs
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
@@ -22,7 +20,6 @@ private const val TAG = "TAS: KtorClient"
 /**
  * This singleton class is the Ktor client that makes calls to RESTful APIs.
  */
-@RequiresApi(Build.VERSION_CODES.O)
 object KtorClient {
     private val client = HttpClient(CIO) {
         install(ContentNegotiation) {
