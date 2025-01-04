@@ -4,9 +4,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.jonathan.testandroidstudio.data.repository.LocalDbRepository
 import com.example.jonathan.testandroidstudio.data.repository.RemoteServerRepository
-import com.example.jonathan.testandroidstudio.domain.usecase.FetchCounterFromLocalSourceUseCase
-import com.example.jonathan.testandroidstudio.domain.usecase.FetchCounterFromRemoteServerUseCase
-import com.example.jonathan.testandroidstudio.domain.usecase.StoreCounterToLocalSourceUseCase
+import com.example.jonathan.testandroidstudio.domain.usecase.localdb.FetchCounterFromLocalSourceUseCase
+import com.example.jonathan.testandroidstudio.domain.usecase.remoteserver.FetchCounterFromRemoteServerUseCase
+import com.example.jonathan.testandroidstudio.domain.usecase.localdb.StoreCounterToLocalSourceUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch

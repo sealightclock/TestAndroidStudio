@@ -1,4 +1,4 @@
-package com.example.jonathan.testandroidstudio.domain.datamodel
+package com.example.jonathan.testandroidstudio.domain.datamodel.localdb
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

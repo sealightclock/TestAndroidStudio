@@ -1,7 +1,7 @@
 package com.example.jonathan.testandroidstudio.data.repository
 
 import com.example.jonathan.testandroidstudio.data.remoteserver.KtorClient
-import com.example.jonathan.testandroidstudio.domain.datamodel.KeyValuePairs
+import com.example.jonathan.testandroidstudio.domain.datamodel.remoteserver.KeyValuePairs
 
 class RemoteServerRepository() {
     private var keyValuePairs = KeyValuePairs()

@@ -1,7 +1,7 @@
 package com.example.jonathan.testandroidstudio.data.remoteserver
 
 import android.util.Log
-import com.example.jonathan.testandroidstudio.domain.datamodel.KeyValuePairs
+import com.example.jonathan.testandroidstudio.domain.datamodel.remoteserver.KeyValuePairs
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.engine.cio.CIO

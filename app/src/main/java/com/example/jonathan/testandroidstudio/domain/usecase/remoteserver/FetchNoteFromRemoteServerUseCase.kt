@@ -1,4 +1,4 @@
-package com.example.jonathan.testandroidstudio.domain.usecase
+package com.example.jonathan.testandroidstudio.domain.usecase.remoteserver
 
 import com.example.jonathan.testandroidstudio.data.repository.RemoteServerRepository
 

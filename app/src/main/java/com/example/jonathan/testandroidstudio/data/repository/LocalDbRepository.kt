@@ -2,8 +2,8 @@ package com.example.jonathan.testandroidstudio.data.repository
 
 import com.example.jonathan.testandroidstudio.data.localdb.KeyIntValueDao
 import com.example.jonathan.testandroidstudio.data.localdb.KeyStringValueDao
-import com.example.jonathan.testandroidstudio.domain.datamodel.KeyIntValue
-import com.example.jonathan.testandroidstudio.domain.datamodel.KeyStringValue
+import com.example.jonathan.testandroidstudio.domain.datamodel.localdb.KeyIntValue
+import com.example.jonathan.testandroidstudio.domain.datamodel.localdb.KeyStringValue
 
 class LocalDbRepository(private val keyStringValueDao: KeyStringValueDao,
                         private val keyIntValueDao: KeyIntValueDao

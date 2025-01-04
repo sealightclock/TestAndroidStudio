@@ -4,8 +4,8 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.jonathan.testandroidstudio.domain.datamodel.KeyIntValue
-import com.example.jonathan.testandroidstudio.domain.datamodel.KeyStringValue
+import com.example.jonathan.testandroidstudio.domain.datamodel.localdb.KeyIntValue
+import com.example.jonathan.testandroidstudio.domain.datamodel.localdb.KeyStringValue
 
 // TODO: Changing this line will require a migration !!!
 //   To avoid the migration during testing, uninstall the app.
