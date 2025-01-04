@@ -48,6 +48,14 @@ fun WelcomeScreen(navController: NavHostController, viewModel: WelcomeViewModel)
         }
         Spacer(modifier = Modifier.padding(16.dp))
         Button(
+            onClick = { viewModel.fetchCounterFromRemoteServer() })
+        {
+            Text(
+                text = "Fetch counter from remote server"
+            )
+        }
+        Spacer(modifier = Modifier.padding(16.dp))
+        Button(
             onClick = { navController.navigate("next") })
         {
             Text(

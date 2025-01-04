@@ -64,3 +64,6 @@ android-library = { id = "com.android.library", version.ref = "agp" }
 
 # from kapt to ksp (better for Room database):
 devtools-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+
+# Kotlin serialization:
+kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }

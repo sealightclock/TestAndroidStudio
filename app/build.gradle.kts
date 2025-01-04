@@ -5,6 +5,9 @@ plugins {
 
     // From kapt to ksp (better for Room database):
     alias(libs.plugins.devtools.ksp)
+
+    // Kotlin serialization:
+    alias(libs.plugins.kotlinSerialization)
 }
 
 android {

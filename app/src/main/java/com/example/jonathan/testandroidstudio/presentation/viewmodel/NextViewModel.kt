@@ -3,26 +3,32 @@ package com.example.jonathan.testandroidstudio.presentation.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.jonathan.testandroidstudio.data.repository.LocalDbRepository
+import com.example.jonathan.testandroidstudio.data.repository.RemoteServerRepository
+import com.example.jonathan.testandroidstudio.domain.usecase.FetchCounterFromRemoteServerUseCase
 import com.example.jonathan.testandroidstudio.domain.usecase.FetchNoteFromLocalSourceUseCase
+import com.example.jonathan.testandroidstudio.domain.usecase.FetchNoteFromRemoteServerUseCase
 import com.example.jonathan.testandroidstudio.domain.usecase.StoreNoteToLocalSourceUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-class NextViewModel(private val repository: LocalDbRepository) : ViewModel() {
+class NextViewModel(
+    private val localDbRepository: LocalDbRepository,
+    private val remoteServerRepository: RemoteServerRepository,
+    ) : ViewModel() {
     private val _note: MutableStateFlow<String> = MutableStateFlow("Initial note from ViewModel")
     val note: StateFlow<String>
         get() = _note
 
     fun fetchNoteFromLocalSource() {
         viewModelScope.launch {
-            _note.value = FetchNoteFromLocalSourceUseCase(repository).invoke()
+            _note.value = FetchNoteFromLocalSourceUseCase(localDbRepository).invoke()
         }
     }
 
     private fun storeNoteToLocalSource() {
         viewModelScope.launch {
-            StoreNoteToLocalSourceUseCase(repository, _note.value).invoke()
+            StoreNoteToLocalSourceUseCase(localDbRepository, _note.value).invoke()
         }
     }
 
@@ -30,5 +36,13 @@ class NextViewModel(private val repository: LocalDbRepository) : ViewModel() {
         _note.value = newNote
 
         storeNoteToLocalSource()
+    }
+
+    fun fetchNoteFromRemoteServer() {
+        viewModelScope.launch {
+            _note.value = FetchNoteFromRemoteServerUseCase(remoteServerRepository).invoke()
+
+            storeNoteToLocalSource()
+        }
     }
 }

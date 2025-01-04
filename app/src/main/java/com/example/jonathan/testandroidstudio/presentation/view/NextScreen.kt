@@ -19,8 +19,8 @@ import androidx.navigation.NavHostController
 import com.example.jonathan.testandroidstudio.presentation.viewmodel.NextViewModel
 
 @Composable
-fun NextScreen(navController: NavHostController, nextViewModel: NextViewModel) {
-    val noteState = nextViewModel.note.collectAsState()
+fun NextScreen(navController: NavHostController, viewModel: NextViewModel) {
+    val noteState = viewModel.note.collectAsState()
 
     Column(
         modifier = Modifier
@@ -40,10 +40,18 @@ fun NextScreen(navController: NavHostController, nextViewModel: NextViewModel) {
         Spacer(modifier = Modifier.padding(16.dp))
         OutlinedTextField(
             value = noteState.value,
-            onValueChange = { nextViewModel.updateNoteByUi(it) },
+            onValueChange = { viewModel.updateNoteByUi(it) },
             modifier = Modifier.fillMaxWidth().padding(8.dp),
             singleLine = true
         )
+        Spacer(modifier = Modifier.padding(16.dp))
+        Button(
+            onClick = { viewModel.fetchNoteFromRemoteServer() })
+        {
+            Text(
+                text = "Fetch note from remote server"
+            )
+        }
         Spacer(modifier = Modifier.padding(16.dp))
         Button(
             onClick = { navController.navigate("welcome") })

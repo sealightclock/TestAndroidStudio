@@ -7,6 +7,7 @@ import androidx.activity.compose.setContent
 import androidx.lifecycle.ViewModelProvider
 import com.example.jonathan.testandroidstudio.data.localdb.AppDatabase
 import com.example.jonathan.testandroidstudio.data.repository.LocalDbRepository
+import com.example.jonathan.testandroidstudio.data.repository.RemoteServerRepository
 import com.example.jonathan.testandroidstudio.presentation.view.AppNavigation
 import com.example.jonathan.testandroidstudio.presentation.viewmodel.NextViewModel
 import com.example.jonathan.testandroidstudio.presentation.viewmodel.NextViewModelFactory
@@ -33,10 +34,18 @@ class MainActivity : ComponentActivity() {
             database.keyIntValueDao(),
         )
 
-        val welcomeViewModel = ViewModelProvider(this, WelcomeViewModelFactory(localDbRepository))[WelcomeViewModel::class.java]
+        val remoteServerRepository = RemoteServerRepository()
+
+        val welcomeViewModel = ViewModelProvider(this, WelcomeViewModelFactory(
+            localDbRepository,
+            remoteServerRepository,
+            ))[WelcomeViewModel::class.java]
         welcomeViewModel.fetchCounterFromLocalSource() // Fetch value on app launch
 
-        val nextViewModel = ViewModelProvider(this, NextViewModelFactory(localDbRepository))[NextViewModel::class.java]
+        val nextViewModel = ViewModelProvider(this, NextViewModelFactory(
+            localDbRepository,
+            remoteServerRepository,
+            ))[NextViewModel::class.java]
         nextViewModel.fetchNoteFromLocalSource() // Fetch value on app launch
 
         setContent {
