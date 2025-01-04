@@ -40,13 +40,11 @@ class MainActivity : ComponentActivity() {
             localDbRepository,
             remoteServerRepository,
             ))[WelcomeViewModel::class.java]
-        welcomeViewModel.fetchCounterFromLocalSource() // Fetch value on app launch
 
         val nextViewModel = ViewModelProvider(this, NextViewModelFactory(
             localDbRepository,
             remoteServerRepository,
             ))[NextViewModel::class.java]
-        nextViewModel.fetchNoteFromLocalSource() // Fetch value on app launch
 
         setContent {
             TestAndroidStudioTheme {

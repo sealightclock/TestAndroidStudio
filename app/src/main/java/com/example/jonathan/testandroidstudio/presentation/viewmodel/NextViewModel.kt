@@ -37,6 +37,7 @@ class NextViewModel(
         storeNoteToLocalSource()
     }
 
+    // TODO: This is used, but the editor says no.
     fun fetchNoteFromRemoteServer() {
         viewModelScope.launch {
             _note.value = FetchNoteFromRemoteServerUseCase(remoteServerRepository).invoke()

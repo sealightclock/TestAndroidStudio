@@ -6,7 +6,7 @@ import com.example.jonathan.testandroidstudio.domain.datamodel.localdb.KeyIntVal
 import com.example.jonathan.testandroidstudio.domain.datamodel.localdb.KeyStringValue
 
 class LocalDbRepository(private val keyStringValueDao: KeyStringValueDao,
-                        private val keyIntValueDao: KeyIntValueDao
+                        private val keyIntValueDao: KeyIntValueDao,
 ) {
     suspend fun getStringValue(key: String): String? {
         return keyStringValueDao.getValue(key)?.value

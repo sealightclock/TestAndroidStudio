@@ -11,6 +11,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -21,6 +22,10 @@ import com.example.jonathan.testandroidstudio.presentation.viewmodel.NextViewMod
 @Composable
 fun NextScreen(navController: NavHostController, viewModel: NextViewModel) {
     val noteState = viewModel.note.collectAsState()
+
+    LaunchedEffect(Unit) {
+        viewModel.fetchNoteFromLocalSource()
+    }
 
     Column(
         modifier = Modifier

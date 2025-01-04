@@ -8,7 +8,10 @@ import com.example.jonathan.testandroidstudio.presentation.viewmodel.NextViewMod
 import com.example.jonathan.testandroidstudio.presentation.viewmodel.WelcomeViewModel
 
 @Composable
-fun AppNavigation(welcomeViewModel: WelcomeViewModel, nextViewModel: NextViewModel) {
+fun AppNavigation(
+    welcomeViewModel: WelcomeViewModel,
+    nextViewModel: NextViewModel,
+) {
     val navController = rememberNavController()
 
     NavHost(navController = navController, startDestination = "welcome") {
