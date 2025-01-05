@@ -1,19 +1,27 @@
 package com.example.jonathan.testandroidstudio.data.repository
 
+import androidx.lifecycle.LifecycleCoroutineScope
 import com.example.jonathan.testandroidstudio.data.remoteserver.KtorClient
 import com.example.jonathan.testandroidstudio.domain.datamodel.remoteserver.KeyValuePairs
+import kotlinx.coroutines.launch
 
-class RemoteServerRepository {
+/**
+ * Use an external coroutine scopeto initialize the keyValuePairs property.
+ */
+class RemoteServerRepository(lifecycleScope: LifecycleCoroutineScope) {
     private lateinit var keyValuePairs: KeyValuePairs
 
-    suspend fun getCounter(): Int {
-        keyValuePairs = KtorClient.getKeyValuePairs(FULL_URL_STR)
+    init {
+        lifecycleScope.launch {
+            keyValuePairs = KtorClient.getKeyValuePairs(FULL_URL_STR)
+        }
+    }
+
+    fun getCounter(): Int {
         return keyValuePairs.counter
     }
 
-    // TODO: This is used, but the editor says no.
-    suspend fun getNote(): String {
-        keyValuePairs = KtorClient.getKeyValuePairs(FULL_URL_STR)
+    fun getNote(): String {
         return keyValuePairs.note
     }
 

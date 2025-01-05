@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.example.jonathan.testandroidstudio.data.localdb.AppDatabase
 import com.example.jonathan.testandroidstudio.data.repository.LocalDbRepository
 import com.example.jonathan.testandroidstudio.data.repository.RemoteServerRepository
@@ -34,7 +35,7 @@ class MainActivity : ComponentActivity() {
             database.keyIntValueDao(),
         )
 
-        val remoteServerRepository = RemoteServerRepository()
+        val remoteServerRepository = RemoteServerRepository(lifecycleScope)
 
         val welcomeViewModel = ViewModelProvider(this, WelcomeViewModelFactory(
             localDbRepository,
