@@ -59,10 +59,10 @@ fun NextScreen(navController: NavHostController, viewModel: NextViewModel) {
         }
         Spacer(modifier = Modifier.padding(16.dp))
         Button(
-            onClick = { navController.navigate("welcome") })
+            onClick = { navController.navigate("webview") })
         {
             Text(
-                text = "Go to welcome screen"
+                text = "Go to webview screen"
             )
         }
     }

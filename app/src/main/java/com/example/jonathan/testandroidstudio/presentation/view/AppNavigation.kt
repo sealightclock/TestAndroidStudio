@@ -17,5 +17,6 @@ fun AppNavigation(
     NavHost(navController = navController, startDestination = "welcome") {
         composable("welcome") { WelcomeScreen(navController, welcomeViewModel) }
         composable("next") { NextScreen(navController, nextViewModel) }
+        composable("webview") { WebViewScreen() }
     }
 }
