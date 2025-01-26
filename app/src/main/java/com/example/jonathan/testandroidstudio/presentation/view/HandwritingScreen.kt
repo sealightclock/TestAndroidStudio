@@ -1,28 +1,38 @@
 package com.example.jonathan.testandroidstudio.presentation.view
 
 import android.graphics.Bitmap
-import android.graphics.Canvas as AndroidCanvas
 import android.os.Environment
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.gestures.detectDragGestures
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.AndroidPaint
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
-import androidx.compose.ui.graphics.asAndroidPath
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.core.graphics.withSave
 import androidx.navigation.NavHostController
 import java.io.File
 import java.io.FileOutputStream
+import android.graphics.Canvas as AndroidCanvas
 
 @Composable
 fun HandwritingScreen(navController: NavHostController) {
@@ -30,17 +40,15 @@ fun HandwritingScreen(navController: NavHostController) {
     val canvasWidth = 800
     val canvasHeight = 1200
 
-    // Path to store the handwriting
-    val path by remember { mutableStateOf(Path()) }
-    // Bitmap for saving the canvas
-    var bitmap by remember { mutableStateOf<Bitmap?>(null) }
+    // List to store points for drawing
+    val points = remember { mutableStateListOf<Offset>() }
 
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp)
     ) {
-        // Canvas for drawing
+        // Drawing Canvas
         Box(
             modifier = Modifier
                 .weight(1f)
@@ -58,14 +66,23 @@ fun HandwritingScreen(navController: NavHostController) {
                     .pointerInput(Unit) {
                         detectDragGestures(
                             onDragStart = { offset ->
-                                path.moveTo(offset.x, offset.y) // Start the path at the drag start position
+                                points.add(offset) // Start drawing
                             },
                             onDrag = { change, _ ->
-                                path.lineTo(change.position.x, change.position.y) // Extend the path as the user drags
+                                points.add(change.position) // Add points to the list
                             }
                         )
                     }
             ) {
+                // Create a path from the points and draw it
+                val path = Path().apply {
+                    if (points.isNotEmpty()) {
+                        moveTo(points.first().x, points.first().y)
+                        for (point in points) {
+                            lineTo(point.x, point.y)
+                        }
+                    }
+                }
                 drawPath(
                     path = path,
                     color = Color.Black,
@@ -78,16 +95,31 @@ fun HandwritingScreen(navController: NavHostController) {
 
         Button(
             onClick = {
-                bitmap = Bitmap.createBitmap(canvasWidth, canvasHeight, Bitmap.Config.ARGB_8888).apply {
-                    val androidCanvas = AndroidCanvas(this)
-                    androidCanvas.drawColor(android.graphics.Color.WHITE) // White background
-                    androidCanvas.drawPath(path.asAndroidPath(), android.graphics.Paint().apply {
-                        color = android.graphics.Color.BLACK
-                        style = android.graphics.Paint.Style.STROKE
-                        strokeWidth = 8f
-                    })
-                    saveBitmapToFile(this, "handwriting.png", context)
+                // Save the path as a bitmap image
+                val bitmap = Bitmap.createBitmap(canvasWidth, canvasHeight, Bitmap.Config.ARGB_8888)
+                val canvas = AndroidCanvas(bitmap)
+                val paint = AndroidPaint().apply {
+                    //color = android.graphics.Color.BLACK
+                    //style = AndroidPaint.Style.STROKE
+                    strokeWidth = 8f
                 }
+
+                // Draw the points onto the bitmap
+                canvas.withSave {
+                    drawColor(android.graphics.Color.WHITE) // Set background color to white
+                    val androidPath = android.graphics.Path().apply {
+                        if (points.isNotEmpty()) {
+                            moveTo(points.first().x, points.first().y)
+                            for (point in points) {
+                                lineTo(point.x, point.y)
+                            }
+                        }
+                    }
+                    drawPath(androidPath, paint.asFrameworkPaint())
+                }
+
+                // Save the bitmap to a file
+                saveBitmapToFile(bitmap, "handwriting.png", context)
             },
             modifier = Modifier.fillMaxWidth()
         ) {
