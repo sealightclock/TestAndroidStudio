@@ -11,6 +11,10 @@ Baseline technologies:
 
 Tests:
 - Navigate among Composable screens (similar to full-screen Fragments) using NavHost.
+    - WelcomeScreen
+    - NextScreen
+    - WebViewScreen
+    - HandwritingScreen
 - Create an Android Library module (project) "utillib" and use it module "app".
 - Test "internal interface" - not accessible by other modules.
 - Create file ".github/workflows/android-ci-cd.yml" (GitHub Actions) for CI/CD. Make sure: 

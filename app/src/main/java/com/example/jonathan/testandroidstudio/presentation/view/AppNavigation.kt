@@ -18,5 +18,6 @@ fun AppNavigation(
         composable("welcome") { WelcomeScreen(navController, welcomeViewModel) }
         composable("next") { NextScreen(navController, nextViewModel) }
         composable("webview") { WebViewScreen(navController) }
+        composable("handwriting") { HandwritingScreen(navController) }
     }
 }

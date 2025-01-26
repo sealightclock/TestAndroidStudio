@@ -47,10 +47,10 @@ fun WebViewScreen(navController: NavHostController) {
         )
         Spacer(modifier = Modifier.padding(16.dp))
         Button(
-            onClick = { navController.navigate("welcome") })
+            onClick = { navController.navigate("handwriting") })
         {
             Text(
-                text = "Go to welcome screen"
+                text = "Go to handwriting screen"
             )
         }
     }
