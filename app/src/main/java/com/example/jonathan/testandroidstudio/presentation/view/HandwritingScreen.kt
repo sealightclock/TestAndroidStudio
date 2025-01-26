@@ -54,19 +54,23 @@ fun HandwritingScreen(navController: NavHostController) {
         ) {
             Canvas(
                 modifier = Modifier
-                    .matchParentSize()
+                    .fillMaxSize()
                     .pointerInput(Unit) {
                         detectDragGestures(
-                            onDragStart = { startPoint ->
-                                path.moveTo(startPoint.x, startPoint.y)
+                            onDragStart = { offset ->
+                                path.moveTo(offset.x, offset.y) // Start the path at the drag start position
                             },
                             onDrag = { change, _ ->
-                                path.lineTo(change.position.x, change.position.y)
+                                path.lineTo(change.position.x, change.position.y) // Extend the path as the user drags
                             }
                         )
                     }
             ) {
-                drawPath(path, Color.Black, style = Stroke(width = 4f))
+                drawPath(
+                    path = path,
+                    color = Color.Black,
+                    style = Stroke(width = 4f)
+                )
             }
         }
 
