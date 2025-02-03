@@ -129,10 +129,10 @@ fun HandwritingScreen(navController: NavHostController) {
         Spacer(modifier = Modifier.height(16.dp))
 
         Button(
-            onClick = { navController.navigate("welcome") })
+            onClick = { navController.navigate("hellojni") })
         {
             Text(
-                text = "Go to welcome screen"
+                text = "Go to hellojni screen"
             )
         }
     }

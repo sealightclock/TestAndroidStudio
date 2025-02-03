@@ -75,4 +75,14 @@ class MainActivity : ComponentActivity() {
         val externalInterfaceImpl2 = ExternalInterfaceImpl2()
         externalInterfaceImpl2.doSomething()
     }
+
+    companion object {
+        // For native library:
+        init {
+            System.loadLibrary("hello")
+        }
+    }
 }
+
+// Declare native method
+external fun stringFromJNI(): String

@@ -15,6 +15,7 @@ Tests:
     - NextScreen
     - WebViewScreen
     - HandwritingScreen
+    - HelloJniScreen
 - Create an Android Library module (project) "utillib" and use it module "app".
 - Test "internal interface" - not accessible by other modules.
 - Create file ".github/workflows/android-ci-cd.yml" (GitHub Actions) for CI/CD. Make sure: 

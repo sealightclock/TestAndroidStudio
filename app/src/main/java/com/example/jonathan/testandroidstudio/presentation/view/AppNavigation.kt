@@ -19,5 +19,6 @@ fun AppNavigation(
         composable("next") { NextScreen(navController, nextViewModel) }
         composable("webview") { WebViewScreen(navController) }
         composable("handwriting") { HandwritingScreen(navController) }
+        composable("hellojni") { HelloJniScreen(navController) }
     }
 }
