@@ -26,17 +26,17 @@ jobs:
         java-version: '17'
 
     # Step 2.1: Install Android SDK
-   - name: Install Android SDK
-     run: |
-      mkdir -p "$ANDROID_SDK_ROOT/cmdline-tools"
-      cd "$ANDROID_SDK_ROOT/cmdline-tools"
-      curl -sSLo sdk-tools.zip https://dl.google.com/android/repository/commandlinetools-linux-9477386_latest.zip
-      unzip -q sdk-tools.zip
-      mv cmdline-tools latest
-      rm sdk-tools.zip
-      echo "ANDROID_SDK_ROOT=$ANDROID_SDK_ROOT" >> $GITHUB_ENV
-      echo "$ANDROID_SDK_ROOT/cmdline-tools/latest/bin" >> $GITHUB_PATH
-      echo "$ANDROID_SDK_ROOT/platform-tools" >> $GITHUB_PATH
+    - name: Install Android SDK
+      run: |
+        mkdir -p "$ANDROID_SDK_ROOT/cmdline-tools"
+        cd "$ANDROID_SDK_ROOT/cmdline-tools"
+        curl -sSLo sdk-tools.zip https://dl.google.com/android/repository/commandlinetools-linux-9477386_latest.zip
+        unzip -q sdk-tools.zip
+        mv cmdline-tools latest
+        rm sdk-tools.zip
+        echo "ANDROID_SDK_ROOT=$ANDROID_SDK_ROOT" >> $GITHUB_ENV
+        echo "$ANDROID_SDK_ROOT/cmdline-tools/latest/bin" >> $GITHUB_PATH
+        echo "$ANDROID_SDK_ROOT/platform-tools" >> $GITHUB_PATH
 
     # Step 2.2: Install Cmake and NDK
     - name: Install Android SDK, NDK, and CMake
